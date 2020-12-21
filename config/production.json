@@ -1,0 +1,4 @@
+{
+    "mongoURI": "mongodb+srv://L0RDx:Matc123@cluster0.3a4el.mongodb.net/seireitei?retryWrites=true&w=majority",
+    "jwtSecret": "openSesame"
+}

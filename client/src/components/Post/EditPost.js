@@ -39,7 +39,7 @@ const EditPost = ({ token, post, onPostUpdated }) => {
 
                 const body = JSON.stringify(newPost);
                 const res = await axios.put(
-                    `http://localhost:5000/api/posts/${post._id}`,
+                    `/api/posts/${post._id}`,
                     body,
                     config
                 );

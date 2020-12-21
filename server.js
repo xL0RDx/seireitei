@@ -8,6 +8,7 @@ import config from 'config';
 import User from './models/User';
 import Post from './models/Post';
 import auth from './middleware/auth';
+import path from 'path';
 
 
 const app = express();
@@ -19,15 +20,6 @@ app.use(
     cors({
         origin: 'http://localhost:3000'
     })
-);
-
-/**
- * @route
- * @desc
-*/
-
-app.get('/', (req, res) =>
-    res.send('http get request sent to root api endpoint')
 );
 
 /**
@@ -292,3 +284,14 @@ app.listen(port, () => console.log('Express server running on port ' + port));
           res.status(500).send('Server error');
       }
    });
+
+   if (process.env.NODE_ENV === 'production') {
+       app.use(express.static('client/build'));
+
+       app.get('*', (req, res) => {
+           res.sendFile(path.resolve(_dirname, 'client', 'build', 'index.html'));
+        });
+   }
+
+   const port = process.env.PORT || 5000;
+   app.listen(port, () => console.log(`Express server running on port ${port}`));

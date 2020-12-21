@@ -37,7 +37,7 @@ authenticateUser = () => {
       }
     }   
 
-    axios.get('http://localhost:5000/api/auth', config)
+    axios.get('/api/auth', config)
     .then((response) => {
       localStorage.setItem('user', response.data.name)
       this.setState(
@@ -55,8 +55,9 @@ authenticateUser = () => {
       this.setState({ user: null });
       console.error(`Error logging in: ${error}`);
     })
-  }  
+  }; 
 }
+
 
 loadData = () => {
 const { token } = this.state;
@@ -68,7 +69,7 @@ if (token) {
   }
 };
   axios
-    .get('http://localhost:5000/api/posts', config)
+    .get('/api/posts', config)
     .then((response) => {
       this.setState({
         posts: response.data
@@ -104,7 +105,7 @@ deletePost = post => {
     };
 
     axios
-      .delete(`http://localhost:5000/api/posts/${post._id}`, config)
+      .delete(`/api/posts/${post._id}`, config)
       .then(response => {
         const newPosts = this.state.posts.filter(p => p._id !== post._id);
         this.setState({
